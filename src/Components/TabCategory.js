@@ -110,6 +110,12 @@ const ManageCategory = () => {
 
     const columns = [
         {
+            title: 'STT',
+            dataIndex: 'key',
+            key: 'key',
+            render: (text, record, index) => index + 1,
+        },
+        {
             title: 'Tên danh mục',
             dataIndex: 'name',
             key: 'name',
