@@ -1,13 +1,14 @@
 import React from 'react';
 
 const InfoCard = ({ item, onClick }) => {
+    console.log('item: ', item.images[0]);
     return (
         <div
             className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-gray-200 transition-transform duration-300 hover:scale-105 hover:border-blue-500 cursor-pointer"
             onClick={onClick}
         >
             <img
-                src={item.image}
+                src={item.images[0]}
                 alt={item.name}
                 className="w-full h-64 object-cover"
             />

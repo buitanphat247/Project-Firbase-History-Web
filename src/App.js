@@ -7,6 +7,7 @@ import Places from "./pages/Places";
 import Error from "./pages/Error";
 import Admin from "./pages/Admin";
 import "./App.css"; // Đảm bảo Tailwind được cấu hình trong dự án của bạn
+import Games from './pages/Games';
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
@@ -42,6 +43,7 @@ function App() {
         <Route path="/figures" element={<Figures />} />
         <Route path="/places" element={<Places />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/games" element={<Games />} />
       </Route>
       <Route path="*" element={<Error />} />
     </Routes>

@@ -78,9 +78,11 @@ const GameTable = ({ data, setData }) => {
 
     // Hiển thị modal "Xem"
     const handleView = (record) => {
-        setViewingQuestions(record.questions || []);
+        const questions = record.questions || [];  // Nếu không có questions, gán mảng rỗng
+        setViewingQuestions(questions);
         setIsViewModalVisible(true);
     };
+
 
     // Đóng modal "Xem"
     const handleViewModalCancel = () => {
@@ -90,16 +92,11 @@ const GameTable = ({ data, setData }) => {
 
     const columns = [
         {
-            title: 'Ảnh',
-            dataIndex: 'image',
-            key: 'image',
-            render: (image) => <img src={image} alt="Game" style={{ width: 50, height: 50 }} />,
-        },
-        {
             title: 'Tên Game',
             dataIndex: 'name',
             key: 'name',
         },
+        // Các cột khác ở đây
         {
             title: 'Hành Động',
             key: 'action',
@@ -125,6 +122,7 @@ const GameTable = ({ data, setData }) => {
             ),
         },
     ];
+
 
     return (
         <>
@@ -174,27 +172,42 @@ const GameTable = ({ data, setData }) => {
                 ]}
             >
                 <List
-                    dataSource={viewingQuestions}
-                    renderItem={(item, index) => (
-                        <List.Item>
-                            <div>
-                                <strong>Câu {index + 1}: </strong> {item.question}
-                                <br />
-                                {item.answers.map((ans, i) => (
-                                    <div key={i}>
-                                        <span
-                                            style={{
-                                                color: item.correct === i ? 'green' : 'black',
-                                            }}
-                                        >
-                                            Đáp Án {i + 1}: {ans}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </List.Item>
-                    )}
+                    dataSource={viewingQuestions || []}  // Nếu viewingQuestions là undefined hoặc null, thay bằng mảng rỗng
+                    renderItem={(item, index) => {
+                        console.log(item);  // In ra item để kiểm tra cấu trúc
+                        return (
+                            <List.Item>
+                                <div>
+                                    <strong>
+                                        Câu {index + 1}:
+                                    </strong>
+                                    {/* Xử lý loại bỏ chữ "Câu" đến dấu chấm đầu tiên */}
+                                    {item.question ? item.question.replace(/^(Câu\s*[\d]+.*?[\.\?])/i, '') : 'Không có câu hỏi'}
+                                    <br />
+                                    {item.answer && item.answer.length > 0 ? (
+                                        item.answer.map((ans, i) => (
+                                            <div key={i}>
+                                                <span
+                                                    style={{
+                                                        color: item.correct === i ? 'green' : 'black',  // Đánh dấu đáp án đúng với màu xanh
+                                                    }}
+                                                >
+                                                    Đáp Án: {ans}  {/* Biểu diễn A, B, C, D */}
+                                                </span>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <span>Không có đáp án</span>  // Nếu không có đáp án
+                                    )}
+                                </div>
+                            </List.Item>
+
+
+                        );
+                    }}
                 />
+
+
             </Modal>
         </>
     );
