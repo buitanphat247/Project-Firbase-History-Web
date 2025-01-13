@@ -70,9 +70,9 @@ const DetailGames = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <ToastContainer /> {/* Container của Toastify */}
-            <h1 className="text-3xl font-bold text-center mb-8">{game.name}</h1>
+        <div className="container mx-auto  p-6">
+            <ToastContainer />console.log();
+            <h2 className="text-3xl font-bold text-center mb-6">{game.name}</h2>
             <div className="grid grid-cols-2 gap-2">
                 {Array.isArray(game.questions) && game.questions.length > 0 ? (
                     game.questions.map((questionData, index) => (
