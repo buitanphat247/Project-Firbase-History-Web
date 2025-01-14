@@ -31,8 +31,8 @@ const Games = () => {
     }, []);
 
     return (
-        <div className="container mx-auto p-6">
-            <h2 className="text-3xl font-bold text-center mb-6">Game List</h2>
+        <div className="container mx-auto px-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Game List</h2>
 
             {loading ? (
                 <div className="flex justify-center items-center h-screen">
@@ -41,9 +41,10 @@ const Games = () => {
             ) : games.length === 0 ? (
                 <p className="text-center text-gray-500">No games found.</p>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 cursor-pointer">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 cursor-pointer">
                     {games.map((game) => (
-                        <NavLink to={`/games/${game.id}`}
+                        <NavLink
+                            to={`/games/${game.id}`}
                             key={game.id}
                             className="bg-white rounded-lg shadow-lg overflow-hidden border-2 cursor-pointer border-gray-200 transition-transform duration-300 hover:scale-105 hover:border-blue-500"
                         >
@@ -53,7 +54,7 @@ const Games = () => {
                                 className="w-full h-48 object-cover"
                             />
                             <div className="p-2">
-                                <h3 className="text-lg font-semibold text-black mb-2 line-clamp-2">
+                                <h3 className="text-sm md:text-lg font-semibold text-black mb-2 line-clamp-2">
                                     {game.name}
                                 </h3>
                             </div>
@@ -62,6 +63,7 @@ const Games = () => {
                 </div>
             )}
         </div>
+
     );
 };
 

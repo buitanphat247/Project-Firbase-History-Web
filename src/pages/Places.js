@@ -40,8 +40,8 @@ const Places = () => {
     };
 
     return (
-        <div className="container mx-auto p-6">
-            <h2 className="text-3xl font-bold text-center mb-6">Các Di Tích Lịch Sử</h2>
+        <div className="container mx-auto px-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Các Di Tích Lịch Sử</h2>
 
             {/* Hiển thị spinner nếu đang tải dữ liệu */}
             {loading ? (
@@ -49,7 +49,7 @@ const Places = () => {
                     <Spin size="large" tip="Đang tải dữ liệu..." />
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
                     {placesData.map((place) => {
                         // Kiểm tra dữ liệu trong console
                         console.log({
@@ -103,12 +103,13 @@ const Places = () => {
                     <img
                         src={selectedPlace?.image1}
                         alt={selectedPlace?.name}
-                        className="w-64 h-64 object-cover rounded-full mb-4"
+                        className="w-32 h-32 md:w-64 md:h-64 object-cover rounded-full mb-4"
                     />
-                    <p className='text-justify'>{selectedPlace?.desc}</p>
+                    <p className='text-sm md:text-base text-justify'>{selectedPlace?.desc}</p>
                 </div>
             </Modal>
         </div>
+
     );
 };
 

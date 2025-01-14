@@ -8,7 +8,7 @@ const MainLayout = () => {
         <>
             <Header>    </Header>
             <div className="bg-slate-200 min-h-screen"> {/* Sử dụng màu nền sáng xám */}
-                <div className='w-[80%] mx-auto py-5'>
+                <div className='py-5 xl:container xl:mx-auto'>
                     <Outlet></Outlet>
                 </div>
             </div>

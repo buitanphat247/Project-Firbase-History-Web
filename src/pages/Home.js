@@ -78,31 +78,32 @@ const Home = () => {
     }
 
     return (
-        <div className="container mx-auto">
+        <div className="px-4">
             {/* Historical Images Swiper */}
             <Swiper
-                slidesPerView={3}
+                slidesPerView={1}
                 spaceBetween={10}
                 pagination={{
                     clickable: true,
                 }}
                 autoplay={{
-                    delay: 1800, // 3 giây
+                    delay: 1800,
                     disableOnInteraction: false,
                 }}
                 modules={[Autoplay]}
                 breakpoints={{
-                    768: { slidesPerView: 3, spaceBetween: 10 },
-                    1024: { slidesPerView: 3, spaceBetween: 10 },
+                    640: { slidesPerView: 2, spaceBetween: 20 },
+                    768: { slidesPerView: 3, spaceBetween: 30 },
+                    1024: { slidesPerView: 4, spaceBetween: 40 },
                 }}
             >
                 {historicalImages.map((image, index) => (
                     <SwiperSlide key={index}>
-                        <div className="bg-white shadow-md rounded-lg cursor-pointer">
+                        <div className="bg-white shadow-md rounded-lg overflow-hidden">
                             <img
                                 src={image}
                                 alt={`Lịch sử ${index + 1}`}
-                                className="w-full h-[250px] object-cover rounded-md"
+                                className="w-full h-[200px] md:h-[250px] object-cover"
                             />
                         </div>
                     </SwiperSlide>
@@ -110,9 +111,9 @@ const Home = () => {
             </Swiper>
 
             {/* Characters Swiper */}
-            <div className="my-5">
-                <div className="flex justify-between items-center">
-                    <h2 className="text-2xl font-bold">Nhân Vật Lịch Sử</h2>
+            <div className="my-4">
+                <div className="flex justify-between items-center ">
+                    <h2 className="text-xl md:text-2xl font-bold">Nhân Vật Lịch Sử</h2>
                     <NavLink
                         to="./figures"
                         className="text-blue-500 font-semibold hover:underline"
@@ -134,7 +135,7 @@ const Home = () => {
                     breakpoints={{
                         640: { slidesPerView: 2, spaceBetween: 20 },
                         768: { slidesPerView: 3, spaceBetween: 30 },
-                        1024: { slidesPerView: 4, spaceBetween: 10 },
+                        1024: { slidesPerView: 4, spaceBetween: 40 },
                     }}
                     className="py-5"
                 >
@@ -158,9 +159,9 @@ const Home = () => {
             </div>
 
             {/* Places Swiper */}
-            <div className="my-5">
-                <div className="flex justify-between items-center">
-                    <h2 className="text-2xl font-bold">Địa Điểm Lịch Sử</h2>
+            <div className="my-4">
+                <div className="flex justify-between items-center ">
+                    <h2 className="text-xl md:text-2xl font-bold">Địa Điểm Lịch Sử</h2>
                     <NavLink
                         to="./places"
                         className="text-blue-500 font-semibold hover:underline"
@@ -180,9 +181,9 @@ const Home = () => {
                     }}
                     modules={[Autoplay]}
                     breakpoints={{
-                        640: { slidesPerView: 2, spaceBetween: 10 },
-                        768: { slidesPerView: 3, spaceBetween: 10 },
-                        1024: { slidesPerView: 4, spaceBetween: 10 },
+                        640: { slidesPerView: 2, spaceBetween: 20 },
+                        768: { slidesPerView: 3, spaceBetween: 30 },
+                        1024: { slidesPerView: 4, spaceBetween: 40 },
                     }}
                     className="py-5"
                 >
@@ -228,9 +229,9 @@ const Home = () => {
                     <img
                         src={selectedItem?.image || selectedItem?.image1}
                         alt={selectedItem?.name}
-                        className="w-64 h-64 object-cover rounded-full mb-4"
+                        className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full mb-4"
                     />
-                    <p className="text-justify">{selectedItem?.desc}</p>
+                    <p className="text-sm md:text-base text-justify">{selectedItem?.desc}</p>
                     {selectedItem?.map && (
                         <a
                             href={selectedItem.map}
