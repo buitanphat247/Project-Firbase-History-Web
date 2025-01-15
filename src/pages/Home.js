@@ -10,10 +10,13 @@ import { Spin, Modal, Button } from "antd";
 import HistoricalCharacterCard from "../Components/HistoricalCharacterCard";
 import InfoCard from "../Components/InfoCard";
 import { NavLink } from "react-router-dom";
+import CardPost from "../Components/CardPost";
 
 const Home = () => {
     const [charactersData, setCharactersData] = useState([]);
     const [placesData, setPlacesData] = useState([]);
+    const [postData, setPostData] = useState([]);
+    console.log('postData: ', postData);
     const [loading, setLoading] = useState(true);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -32,9 +35,10 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [charSnapshot, placeSnapshot] = await Promise.all([
+                const [charSnapshot, placeSnapshot, postSnapshot] = await Promise.all([
                     getDocs(collection(db, "characters")),
                     getDocs(collection(db, "locations")),
+                    getDocs(collection(db, "posts")),
                 ]);
 
                 const charData = charSnapshot.docs.map((doc) => ({
@@ -46,9 +50,14 @@ const Home = () => {
                     id: doc.id,
                     ...doc.data(),
                 }));
+                const postData = postSnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
 
                 setCharactersData(charData);
                 setPlacesData(placeData);
+                setPostData(postData);
             } catch (error) {
                 console.error("Error fetching data from Firestore:", error);
             } finally {
@@ -207,6 +216,50 @@ const Home = () => {
                                         description: place.desc,
                                         map: place.mapLink,
                                     }}
+                                />
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+
+
+            <div className="my-4">
+                <div className="flex justify-between items-center ">
+                    <h2 className="text-xl md:text-2xl font-bold">Bài Học Lịch Sử</h2>
+                    <NavLink
+                        to="./places"
+                        className="text-blue-500 font-semibold hover:underline"
+                    >
+                        Xem thêm
+                    </NavLink>
+                </div>
+                <Swiper
+                    slidesPerView={1}
+                    spaceBetween={10}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    autoplay={{
+                        delay: 1800,
+                        disableOnInteraction: false,
+                    }}
+                    modules={[Autoplay]}
+                    breakpoints={{
+                        640: { slidesPerView: 2, spaceBetween: 20 },
+                        768: { slidesPerView: 3, spaceBetween: 30 },
+                        1024: { slidesPerView: 4, spaceBetween: 40 },
+                    }}
+                    className="py-5"
+                >
+                    {postData.map((post) => (
+                        <SwiperSlide key={post.id}>
+                            <div className="cursor-pointer">
+                                <CardPost
+                                    imageUrl={post.thumbnail}
+                                    title={post.title}
+                                    to={`/posts/${post.id}`}
+                                // date={post.createdAt}
                                 />
                             </div>
                         </SwiperSlide>

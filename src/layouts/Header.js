@@ -19,7 +19,7 @@ const Header = () => {
         },
         {
             name: 'bài viết',
-            url: '/articles'
+            url: '/posts'
         },
         {
             name: 'mini games',

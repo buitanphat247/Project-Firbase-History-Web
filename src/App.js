@@ -10,6 +10,8 @@ import Admin from "./pages/Admin";
 import Games from "./pages/Games";
 import DetaiGames from "./pages/DetaiGames";
 import "./App.css"; // Đảm bảo Tailwind được cấu hình trong dự án của bạn
+import Post from "./pages/Post";
+import DetailPost from "./pages/DetailPost";
 
 function App() {
   // Xác định nếu thiết bị là mobile/tablet
@@ -46,6 +48,9 @@ function App() {
             )
           }
         />
+
+        <Route path='/posts' element={<Post />}></Route>
+        <Route path='/posts/:postId' element={<DetailPost />}></Route>
       </Route>
       <Route path="*" element={<Error />} />
     </Routes>
