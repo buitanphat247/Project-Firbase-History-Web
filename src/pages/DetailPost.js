@@ -50,7 +50,7 @@ const DetailPost = () => {
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-md">
-            <h1 className="text-3xl font-bold mb-4 text-center">{post.title}</h1>
+            <h1 className="text-2xl font-bold mb-4 text-center">{post.title}</h1>
             <div
                 className="prose lg:prose-xl"
                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
