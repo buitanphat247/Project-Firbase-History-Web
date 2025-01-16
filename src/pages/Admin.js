@@ -22,11 +22,12 @@ const Admin = () => {
             label: 'Quản lý game',
             children: <TabGame></TabGame>,
         },
-        {
-            key: '4',
-            label: 'Quản lý danh mục',
-            children: <TabCategory></TabCategory>,
-        }, {
+        // {
+        //     key: '4',
+        //     label: 'Quản lý danh mục',
+        //     children: <TabCategory></TabCategory>,
+        // },
+         {
             key: '55',
             label: 'Quản lý bài viết',
             children: <TabPost></TabPost>,
